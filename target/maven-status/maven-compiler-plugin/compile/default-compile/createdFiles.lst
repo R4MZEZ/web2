@@ -1,0 +1,7 @@
+beans\MainBean$Point.class
+servlets\ControllerServlet.class
+servlets\AreaCheckServlet$Point.class
+beans\MainBean.class
+beans\JustBean.class
+servlets\AreaCheckServlet.class
+tools\JSONConverter.class
