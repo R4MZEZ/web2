@@ -1,5 +1,6 @@
 beans\DatabaseHandler.class
 utils\HibernateFactory.class
+dao\PointDAO.class
 data\Point_.class
 data\Point.class
 beans\MainBean.class

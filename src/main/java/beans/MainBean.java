@@ -1,10 +1,15 @@
 package beans;
 
+import dao.PointDAO;
 import data.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean(name = "mainBean")
 @SessionScoped
@@ -13,10 +18,12 @@ public class MainBean implements Serializable {
   private float y = 0;
   private float x = 0;
   private int r = 1;
-  private ArrayList<Point> pointList = new ArrayList<>();
+  private List<Point> pointList;
+  private final PointDAO pointDAO = new PointDAO();
+  private final DatabaseHandler databaseHandler = new DatabaseHandler();
 
   public MainBean() {
-    DatabaseHandler databaseHandler = new DatabaseHandler();
+  pointList = new ArrayList<>();
   }
 
   public float getY() {
@@ -63,7 +70,7 @@ public class MainBean implements Serializable {
     return r;
   }
 
-  public ArrayList<Point> getPointList() {
+  public List<Point> getPointList() {
     return pointList;
   }
 
@@ -71,16 +78,20 @@ public class MainBean implements Serializable {
     this.pointList = pointList;
   }
 
-  public void checkPoint(){
+  public void checkPoint() {
+    System.out.println(Arrays.toString(pointList.toArray()));
     Point point = new Point(getX(), getY(), getR(), System.currentTimeMillis());
-    pointList.add(point);
+    point.setId(pointDAO.getMaxId() + 1);
+    pointDAO.add(point);
+    pointList = pointDAO.findAll(point.getSession_id());
   }
 
-  public void nothing(){
+  public void nothing() {
 
   }
 
   public void clearPoints() {
+    pointDAO.clear(Point.session_id);
     pointList.clear();
   }
 

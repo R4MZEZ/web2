@@ -13,6 +13,7 @@ public abstract class Point_ {
 	public static volatile SingularAttribute<Point, Long> script_time;
 	public static volatile SingularAttribute<Point, Double> x;
 	public static volatile SingularAttribute<Point, Double> y;
+	public static volatile SingularAttribute<Point, String> session_id;
 	public static volatile SingularAttribute<Point, Integer> id;
 	public static volatile SingularAttribute<Point, String> time;
 

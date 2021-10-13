@@ -55,14 +55,6 @@ function reset() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   drawGraph();
-
-  $.ajax({
-    type: "DELETE",
-    url: "controller",
-    success: function (result) {
-      // Do something with the result
-    }
-  });
 }
 
 function onAnswer(res) {

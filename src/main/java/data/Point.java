@@ -2,16 +2,19 @@ package data;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.servlet.http.HttpSession;
 
 @Entity
 @Table(name = "points")
 public class Point {
 
+  public static String session_id;
   private int id;
   private double x;
   private double y;
@@ -30,13 +33,16 @@ public class Point {
     hit = calculate(x, y, r) ? "Попадание" : "Промах";
     time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     script_time = System.currentTimeMillis() - startTime;
+
+    FacesContext fCtx = FacesContext.getCurrentInstance();
+    HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+    session_id = session.getId();
   }
 
   public Point() {
   }
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   public int getId() {
     return id;
   }
@@ -85,6 +91,13 @@ public class Point {
     return script_time;
   }
 
+  public String getSession_id() {
+    return session_id;
+  }
+
+  public void setSession_id(String session_id) {
+    this.session_id = session_id;
+  }
 
   public String getHit() {
     return hit;
@@ -108,5 +121,17 @@ public class Point {
     return false;
   }
 
-
+  @Override
+  public String toString() {
+    return "Point{" +
+        "session_id='" + session_id + '\'' +
+        ", id=" + id +
+        ", x=" + x +
+        ", y=" + y +
+        ", r=" + r +
+        ", hit='" + hit + '\'' +
+        ", time='" + time + '\'' +
+        ", script_time=" + script_time +
+        '}';
+  }
 }
