@@ -1,8 +1,5 @@
 beans\DatabaseHandler.class
-beans\MainBean$Point.class
-servlets\ControllerServlet.class
-servlets\AreaCheckServlet$Point.class
+utils\HibernateFactory.class
+data\Point_.class
+data\Point.class
 beans\MainBean.class
-beans\JustBean.class
-servlets\AreaCheckServlet.class
-tools\JSONConverter.class

@@ -1,5 +1,6 @@
 package beans;
 
+import data.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;

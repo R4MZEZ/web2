@@ -1,7 +1,6 @@
 package utils;
-import beans.Point;
-import models.Auto;
-import models.User;
+import data.Point;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
