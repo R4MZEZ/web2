@@ -1,5 +1,5 @@
 package utils;
-import beans.MainBean;
+import beans.Point;
 import models.Auto;
 import models.User;
 import org.hibernate.SessionFactory;
@@ -15,7 +15,7 @@ public class HibernateFactory {
     if (sessionFactory == null) {
       try {
         Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(MainBean.Point.class);
+        configuration.addAnnotatedClass(Point.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         sessionFactory = configuration.buildSessionFactory(builder.build());
 
