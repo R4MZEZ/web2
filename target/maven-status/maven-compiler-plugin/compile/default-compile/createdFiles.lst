@@ -1,3 +1,4 @@
+beans\DatabaseHandler.class
 beans\MainBean$Point.class
 servlets\ControllerServlet.class
 servlets\AreaCheckServlet$Point.class
