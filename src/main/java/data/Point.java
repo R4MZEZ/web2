@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Table(name = "points")
 public class Point {
 
-  public static String session_id;
+  private String session_id;
   private int id;
   private double x;
   private double y;

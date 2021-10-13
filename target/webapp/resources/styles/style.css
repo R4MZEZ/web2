@@ -59,11 +59,11 @@ body {
     overflow: hidden;
 }
 
-.input-text {
-    background-color: #444444;
-    color: #8C9EAE;
-    border: 0;
-}
+/*.input-text {*/
+/*    background-color: #444444;*/
+/*    color: #8C9EAE;*/
+/*    border: 0;*/
+/*}*/
 
 
 .button {
@@ -119,17 +119,17 @@ body {
 }
 
 
-#rSelect, .input-text, .input-checkbox{
-  background-color: #444444;
-  color: #8C9EAE;
-  border: none;
-  font: inherit;
-  letter-spacing: inherit;
-  word-spacing: inherit;
-  border-radius: 5px;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-}
+/*#rSelect, .input-text, .input-checkbox{*/
+/*  background-color: #444444;*/
+/*  color: #8C9EAE;*/
+/*  border: none;*/
+/*  font: inherit;*/
+/*  letter-spacing: inherit;*/
+/*  word-spacing: inherit;*/
+/*  border-radius: 5px;*/
+/*  -webkit-transition-duration: 0.4s;*/
+/*  transition-duration: 0.4s;*/
+/*}*/
 
 select:not([multiple]) {
   padding-right: 1.2em;
@@ -138,10 +138,10 @@ select:not([multiple]) {
   background-size: 0.85em auto;
 }
 
-select:focus , .input-text:focus, .input-checkbox:focus{
-  outline: none;
-  box-shadow: 0 0 0 3px #262626;
-}
+/*select:focus , .input-text:focus, .input-checkbox:focus{*/
+/*  outline: none;*/
+/*  box-shadow: 0 0 0 3px #262626;*/
+/*}*/
 #panelX{
     border:none;
 }

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core">
 <!--
 Студент, выполнивший работу: Казаченко Роман Олегович
 Группа: P3230
@@ -45,11 +45,13 @@
 
                         <label>Введите координату Y [-5,3]:</label>
                         <label for="inputY"/>
-                        <h:inputText class="input-text" id="inputY" type="text"
+                        <p:inputText class="input-text" id="inputY" type="text"
                                      data-min="-5" data-max="3"
                                      data-separator="."
                                      value="#{mainBean.y}"
-                                     required="true"/>
+                                     widgetVar="inputY">
+                            <f:validateDoubleRange minimum="-5" maximum="3"/>
+                        </p:inputText>
 
                         <br/><br/>
 

@@ -48,8 +48,6 @@ function onlyDigits() {
 }
 
 function reset() {
-  localStorage.clear();
-  historyTable.innerHTML = "";
   let canvas = document.querySelector("#canvas");
   const context = canvas.getContext('2d');
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -232,7 +230,7 @@ function loadPointsFromTable(){
   points.forEach(point => { drawPoint(point); });
 }
 
-document.getElementById("field-form:inputY").oninput = onlyDigits;
+// document.getElementById("field-form:inputY").oninput = onlyDigits;
 // document.querySelector("#submit-button").onclick = checkFields;
 document.getElementById("field-form:reset-button").onclick = reset;
 

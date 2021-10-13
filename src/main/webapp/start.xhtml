@@ -14,7 +14,10 @@
     <f:view>
         <!-- Без формы компоненты работать не будут -->
         <h:form>
-                <p:commandButton value="GO to next page" action="nextPage"/>
-        </h:form></f:view>
+            <p:poll interval="10" update="timeMachine"/>
+            <h:outputText id="timeMachine" value="#{mainBean.dateTime}"/>
+            <p:commandButton value="GO to next page" action="nextPage"/>
+        </h:form>
+    </f:view>
 </h:body>
 </html>

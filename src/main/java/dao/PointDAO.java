@@ -12,9 +12,6 @@ import utils.HibernateFactory;
 
 public class PointDAO {
 
-  public Point findById(int id) {
-    return HibernateFactory.getSessionFactory().openSession().get(Point.class, id);
-  }
 
   public void add(Point point) {
     Session session = HibernateFactory.getSessionFactory().openSession();
@@ -23,7 +20,6 @@ public class PointDAO {
     tx1.commit();
     session.close();
   }
-
 
   public void clear(String session_id) {
     Session session = HibernateFactory.getSessionFactory().openSession();

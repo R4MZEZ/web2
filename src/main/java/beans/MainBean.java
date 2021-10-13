@@ -3,6 +3,8 @@ package beans;
 import dao.PointDAO;
 import data.Point;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,9 +23,15 @@ public class MainBean implements Serializable {
   private List<Point> pointList;
   private final PointDAO pointDAO = new PointDAO();
   private final DatabaseHandler databaseHandler = new DatabaseHandler();
+  private LocalDateTime dateTime;
 
   public MainBean() {
   pointList = new ArrayList<>();
+  }
+
+  public String getDateTime() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy");
+    return LocalDateTime.now().format(formatter);
   }
 
   public float getY() {
@@ -71,6 +79,11 @@ public class MainBean implements Serializable {
   }
 
   public List<Point> getPointList() {
+    try {
+      System.out.println(pointList.get(0));
+    }catch (Exception e){}
+    System.out.println(Arrays.toString(pointList.toArray()));
+    System.out.println("Hello world");
     return pointList;
   }
 
@@ -79,7 +92,6 @@ public class MainBean implements Serializable {
   }
 
   public void checkPoint() {
-    System.out.println(Arrays.toString(pointList.toArray()));
     Point point = new Point(getX(), getY(), getR(), System.currentTimeMillis());
     point.setId(pointDAO.getMaxId() + 1);
     pointDAO.add(point);
@@ -91,7 +103,8 @@ public class MainBean implements Serializable {
   }
 
   public void clearPoints() {
-    pointDAO.clear(Point.session_id);
+    Point point = new Point(1,2,3,4);
+    pointDAO.clear(point.getSession_id());
     pointList.clear();
   }
 
