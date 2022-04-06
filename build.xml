@@ -1,0 +1,114 @@
+<project name="web3" default="build">
+
+	<property name="src" value="./src/main"/>
+	<property name="tests" value="./src/test"/>
+	<property name="target" value="./target"/>
+	<property name="file.jar" value="./target/webapp.jar"/>
+	<property name="test" value="./src/test"/>
+
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="lib/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+
+    
+
+    <path id="libs">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+	
+	<path id="libs.main.module">
+        <path refid="libs"/>
+    </path>
+
+    <target name="compile">
+
+        <mkdir dir="${target}/classes"/>
+        <javac srcdir="${src}/java" destdir="${target}/classes" includeantruntime="false">
+            <classpath>
+				<path refid="libs.main.module"/>	
+			</classpath>
+        </javac>
+
+		<copy todir="${target}/classes">
+			<fileset dir="${src}/resources"/> 
+		</copy>
+
+        <mkdir dir="${target}/webapp"/>
+
+		<copy todir="${target}/webapp">
+			<fileset dir="${src}/webapp"/> 
+		</copy>
+    </target>
+	
+	<target name="build" depends="compile">
+		<delete file="${file.jar}"/>
+		<jar destfile="${file.jar}" basedir="${target}/classes">
+			<manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+        </jar>	
+	</target>
+	
+	<target name="clean">
+		<delete dir="${target}"/>
+	</target>
+
+	<target name="test" depends="build">
+        <mkdir dir="${target}/tests"/>
+        <javac srcdir="${tests}/java" destdir="${target}/tests" includeantruntime="false">
+            <classpath>
+				<path refid="libs.main.module"/>	
+				<pathelement location="${target}/classes"/>
+			</classpath>
+        </javac>
+
+		<mkdir dir="reports"/>
+        <junit fork="true" printsummary="on">
+            <formatter type="xml"/>
+            <classpath>
+                <pathelement location="${target}/classes"/>
+                <pathelement location="${target}/tests"/>
+            </classpath>
+            <batchtest todir="reports">
+                <fileset dir="${test}/java" includes="*Test*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+	<target name="xml">
+		<xmlvalidate failonerror="no" lenient="true">
+  			<fileset dir="." includes="**/*.xml" excludes=".idea/**/*.xml"/>
+		</xmlvalidate>
+	</target>
+
+
+	<target name="team">
+
+        <exec executable="git">
+            <arg value="stash"/>
+            <arg value="save"/>
+        </exec>
+
+        <exec executable="git">
+            <arg value="checkout"/>
+            <arg value="HEAD~1"/>
+        </exec>
+
+        <runtarget target="build"/>
+        
+        <exec executable="git">
+            <arg value="checkout"/>
+            <arg value="HEAD@{1}"/>
+        </exec>
+
+        <exec executable="git">
+            <arg value="stash"/>
+            <arg value="apply"/>
+        </exec>
+    </target>
+
+</project>
