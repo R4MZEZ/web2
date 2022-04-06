@@ -42,6 +42,12 @@ public class Point {
   public Point() {
   }
 
+  public Point(double x, double y, double r) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+  }
+
   @Id
   public int getId() {
     return id;
